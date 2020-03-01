@@ -1,0 +1,448 @@
+ 
+ PMSnap screen capture utility for OS/2 2.x
+ ==========================================
+ Version: 1.0 
+ Date:    February 21, 1994
+ Authors: Carrick von Schoultz (Internet e-mail: cschoult@aton.abo.fi)
+          Peter Nielsen
+ 
+ Introduction
+ -------------
+ This is the documentation for PMSnap. We recommend that you read it!
+ At least have a look at the "Recommendations" and "Environment
+ variable" sections.
+ To quickly see some of PMSnaps unique capabilities try the following:
+
+ 1:
+   - start PMSnap
+   - place a window so that some parts of the window is outside the
+     screen; select "Window" from PMSnap "Capture" menu, and point
+     and click at the previously positioned window
+   - PMSnap should now have copied the entire window, including the
+     parts of the window outside the screen
+ 2:
+   - select "Window" from PMSnap "Capture" menu, and point and click at
+     the Desktop window
+   - PMSnap shows a information dialog (how big the window is), and you
+     can answer "Yes"
+   - PMSnap should now have copied the entire Desktop window, including
+     the parts of the window outside the screen (titlebar and border)
+ 3:
+   - select "Area of Screen" from PMSnap "Capture" menu, and PMSnap
+     shows a crosshair
+   - now press "Ctrl+M", and you get a magnifying pointer in the middle
+     of the crosshair
+   - to select a area of the screen, press mouse button 1, keep mouse
+     button 1 down, and drag the tracking rectangle, so that it covers
+     the area you want to capture (if you want to toggle magnifying
+     pointer on/off, press "Ctrl+M")
+   - release mouse button 1
+   - PMSnap should now have copied the area you selected
+   
+ Features
+ ---------
+ - Screen capture
+ - Window capture (also windows outside screen)
+ - Window interior capture (also windows outside screen)
+ - Area capture (with or without magnifying pointer)
+ - Delayed capture
+ - 8 and 24 bit colour support
+ - Palette Manager support
+ - Save to file (OS/2 2.x and Windows 3.x, 8 and 24-bit bitmaps)
+ - Copy to clipboard (including palette)
+ - Paste from clipboard (including palette)
+
+ Menus
+ ------
+ "File":
+ - Use "Save as..." to open a save dialog to save the bitmap
+   to a file. (OS/2 2.x and Windows 3.x, 8 and 24-bit bitmaps.)
+   Disabled if nothing to save.
+
+   - You use the "Save Bitmap" dialog to name and save a new file.
+     Give a name and press "Save" button, to cancel press "Cancel"
+     button.
+     Note 1: If file exists, the previous file is overwritten!
+     Note 2: PMSnap forces a "BMP" file extension!
+
+ - "Exit" quits PMSnap and returns you to OS/2.
+   (shortcut key: Ctrl+X or F3)
+
+ "Edit":
+ - "Copy" bitmap to clipboard. If your display driver supports
+   Palette Manager, and if "Palette options" "Copy/Paste palette to/from
+   clipboard", is grayed, a dialog asks whether you want to copy
+   palette to clipboard or not.
+   Disabled if nothing to copy.
+   (shortcut key: Ctrl+Insert)
+
+ - "Paste" bitmap from clipboard. If your display driver supports
+   Palette Manager, and if "Palette options" "Copy/Paste palette to/from
+   clipboard," is grayed, a dialog asks whether you want to paste
+   palette from clipboard or not.
+   Disabled if nothing to paste.
+   (shortcut key: Shift-Insert)
+
+ "Capture":
+ - "Cancel Capture" cancels a started (but not yet finished) capture.
+   Disabled when you are not capturing anything.
+   (shortcut key: ESC)
+
+ - "Window" captures a specified window on the screen.
+   PMSnap first changes the pointer to a red pointer pointing on a
+   mini-window. Select the window you want to capture by pointing
+   at, and clicking mouse button 1.
+   If "Options" "Allow full capture" checked and if window size exceeds
+   screen size (either vertically, horizontally or both) PMSnap displays
+   a dialog where you can choose if you want to continue or not.
+   (shortcut key: Ctrl+W)
+
+ - "Window Interior" captures a specified window interior on the
+   screen. PMSnap first changes the pointer to a red pointer pointing
+   on a mini-window. Select the window interior you want to capture by
+   pointing at, and clicking mouse button 1.
+   If "Options" "Allow full capture" checked and if window interior size
+   exceeds screen size (either vertically, horizontally or both) PMSnap
+   displays a dialog where you can choose if you want to continue or not.
+   Note: Some windows (ex. dialog windows) do not have a client area,
+   and PMSnap is not able to determine what you want to capture, so
+   PMSnap captures the entire window.
+   Note 2: "Win-OS/2 window" sessions are captured without their border
+   but for example titlebars and menubars are captured.
+   (shortcut key: Ctrl+I)
+
+ - "Screen" captures the entire screen.
+   (shortcut key: Ctrl+S)
+
+ - "Area of Screen" captures a specified area of screen.
+   PMSnap first changes the pointer to a crosshair (alternatively with
+   a magnifying pointer in the centre of the crosshair, see "Options"
+   for details).
+   Place the pointer where you want to start your capture; press
+   mouse button 1 (keep it down); drag the crosshair so that the
+   tracking rectangle covers the area you want to capture;
+   release mouse button 1. You may alternatively use cursor (arrow)
+   keys for precise tracking.
+   Pressing backspace-button during tracking gives you the
+   opportunity to restart capture. ESC cancels capture.
+   Ctrl+M toggles magnifying pointer on/off.
+   Note: You can change the settings for the tracking rectangle in
+   the Options-dialog; whether the tracking rectangle itself is part
+   of the capture area or not. 
+   If you use "Area of Screen" capture on animated areas (the window
+   is repainted while the crosshair is on top of that window), parts
+   of the crosshair, are sometimes left in the window. If you want to
+   get rid of this garbage just resize, hide or minimize that window
+   (this causes the window to be repainted). We recommend you use
+   "Window" or "Window Interior" capture on animated areas, and then
+   when you have the captured window in PMSnap, you can use "Area of
+   Screen" to capture detailed parts of that window. 
+   (shortcut key: Ctrl+A)
+
+ "Display":
+ - "Fit to window" If unchecked; shows the bitmap in its actual
+   size. If picture bigger than PMSnap client area, use scrollbars
+   to view hidden parts.
+   If checked; shows the bitmap stretched (keeping its proportions)
+   to fit the PMSnap client area.
+   (shortcut key: F4)
+
+ - "Options..." opens a "Options" dialog:
+
+   - "Hide PMSnap during capture"; you can choose between:
+     - "Instantly after choosing capture method"
+     - "Only during capture" PMSnap is hidden during capture,
+       but only during capture (not when selecting target or
+       during delayed capture count-down).
+     - "PMSnap is not hidden during capture"
+
+   - "Sound after capture":
+     - not checked; no sound after capture.
+     - checked; gives a note sound when capture is ready.
+
+   - "Capture delayed" ?? "sec." where you can specify a delay
+     time between 0 and 60 seconds. The delay starts after target
+     of capture has been chosen. If PMSnap is not hidden during
+     capture, a count-down is shown in the titlebar/icon text.
+     Note: If you choose a value greater than 60, the delay will
+     be reset to 0.
+
+   - "Allow full capture"
+     - not checked; windows outside the screen will be clipped.
+       If you for some reason do not like PMSnap to capture windows
+       outside the screen. We recommend you do NOT use this.
+     - checked; windows outside the screen will be captured.
+       Note: We recommend you use this.
+
+   - "Area capture":
+     - "Magnifying pointer":
+       - not checked; during area capture PMSnap changes the default
+         pointer to a crosshair.
+       - checked; during area capture PMSnap changes the default
+         pointer to a crosshair and includes a magnifying pointer in
+         the centre of the crosshair.
+       During area capture Ctrl+M toggles magnifying pointer on/off.
+       (The magnifying pointer size is the size of your icons. Sorry,
+        it is not possible to make it bigger.)
+
+     - "Magnify by" where you can specify the degree of magnification.
+       Currently you can choose between 1.5, 2.0 and 2.5. You can not
+       write anything to the spinner control, you must use the spinner
+       arrows to change the value (alternatively use arrow-keys).
+       Note: This control is disabled if "Magnifying pointer" control
+       is not checked.
+
+   - "Include rectangle":
+     This specifies which parts of the tracking rectangle are included
+     to the capture area.
+     - "Left" 
+       - not checked; do not include left side of rectangle.
+       - checked; include left side of rectangle.
+     - "Top"
+       - not checked; do not include top side of rectangle.
+       - checked; include top side of rectangle.
+     - "Right"
+       - not checked; do not include right side of rectangle.
+       - checked; include right side of rectangle.
+     - "Bottom"
+       - not checked; do not include bottom side of rectangle.
+       - checked; include bottom side of rectangle.
+
+   - "OK": Changes made to the Option dialog are accepted.
+
+   - "Cancel": Changes made to the Option dialog are cancelled.
+
+ - "Palette options..." opens a "Palette Manager Options" dialog:
+   Disabled if your display driver do not support Palette Manager.
+
+   - "Palette Manager":
+     - "Copy/Paste palette to/from clipboard":
+       - not checked; Palette is not copied/pasted to/from clipboard.
+       - grayed; A dialog always asks if you want to copy/paste the
+         palette to/from clipboard.
+       - checked; Palette is always copied/pasted to/from clipboard.
+
+     - "Aggressive on palette"
+       For changes to take effect, either restart PMSnap (or try
+       opening closing a few folders on the desktop).
+       - not checked; When painting, PMSnap refreshes the palette
+         locally. Other applications using the palette affects (less).
+         Note: We recommend you use this.
+       - checked; When painting, PMSnap refreshes the palette
+         globally. Other applications using the palette affects (more).
+         Note: We recommend you do NOT use this.
+
+   - "OK": Changes made to the Palette Manager Options dialog are
+     accepted.
+
+   - "Cancel": Changes made to the Palette Manager Options dialog
+     are cancelled.
+
+ "Help":
+ - Standard "Help" menu. Help currently disabled.
+
+ - "About PMSnap..." shows a product information dialog.
+
+ System menu:
+ Standard system menu.
+
+ Environment variable
+ ---------------------
+ PMSnap saves its settings in its own ini-file. For the program
+ to know where to look for this file, PMSnap uses a environment
+ variable: PMSNAP_INI. This variable specifies the filename
+ (including full path) that PMSnap should use for storing its
+ options. If this environment variable is not set, PMSnap will
+ create the file PMSNAP.INI in the current directory and store
+ its information there. I recommend that you put the line:
+
+ SET PMSNAP_INI=C:\OS2\PMSNAP.INI
+
+ in your CONFIG.SYS (Of course, you can use any other path or
+ filename that you want). By doing this you avoid multiple copies
+ of PMSNAP.INI scattered around your hard drive.
+ You will have to reboot before this line will take effect.
+ 
+ Starting the program
+ ---------------------
+ To start PMSnap, double click on the program object.
+ 
+ Program requirements
+ ---------------------
+ To use PMSnap, you must be running OS/2 2.0 (or later), and of
+ course Workplace Shell as your shell. 
+ 
+ Recommendations
+ ----------------
+ - If you use PMSnap feature capturing windows outside the screen, 
+   we recommend you use OS/2 system settings "Hide window":
+   "System setup"
+     "System - settings"
+       "Window"
+         "Minimize button behaviour"
+           "Hide window"
+   This is to make sure that you will not lose any icons (minimized
+   windows), especially "Win-OS/2 window" icons.
+   If you however, lose any icons, you may restore the window
+   from "Window List" (press Ctrl+Esc, or both mouse buttons to
+   activate "Window List"). 
+ - We recommend you do not have "Win-OS/2 window" sessions open
+   (visible), while doing capture on windows outside the screen.
+   Especially do not capture "Win-OS/2 window" sessions outside the
+   screen. (Win-OS/2 window sessions will not update (paint) their
+   sessions fast enough.)
+
+ Troubleshooting
+ ----------------
+ - When you capture windows outside the screen, some windows are
+   not (fully) repainted:
+   - Sorry! there is nothing you can do about this. We decided not
+     to implement any "artificial" delay, since some windows need
+     several seconds to repaint (and there is no way for PMSnap to
+     know when a window has finished repainting).
+ - Recovering "lost" windows/icons: 
+   - If for some reason you "lose" any window or icon during capture
+     of windows outside the screen, you may choose the "lost"
+     window/icon from Workplace Shell "Window List" and cascade
+     the window back to the visible area (select program, press
+     mouse button 2, choose "Cascade").
+
+ Warranty:
+ --------
+ There is no warranty, expressed or implied, for PMSnap.
+
+ Disclaimer:
+ -----------
+ In no event will the authors of PMSnap be liable for any damages
+ resulting from the use of PMSnap. PMSnap is provided "AS IS,"
+ and you, its user, assume the entire risk when you use it. 
+
+
+
+                            *      *      *
+ 
+ Registering
+ ------------
+ If you find that you like PMSnap and desire to continue using it,
+ you should become a registered user. Registration confers on you
+ a number of benefits:
+
+ - You will receive the latest version of PMSnap.
+
+ - You are automatically registered for the next version of PMSnap
+   when it becomes available. You will be notified of all new
+   releases thereafter as they happen.
+
+ - Registered users will receive priority service on technical
+   assistance through Internet e-mail or by paper letter.
+   Anyone and everyone may contact us however.
+
+ - You will also receive full printed documentation for PMSnap. 
+
+ - Plus, you get the piece of mind to know that you have helped
+   support the shareware concept which is dedicated to bringing
+   quality software at low prices to as many people as possible.
+   Shareware authors devote many, many hours of their time creating
+   their products. If people register the shareware programs they
+   use, this will send a message to those talented programmers that
+   a noble cause can be a viable way of life.
+ 
+ Refer to the accompanying file ORDER.DOC for a sample order form.
+ Pricing information is contained in that file also. If, for any
+ reason, that file is unavailable to you, please contact us. 
+ Please contact us for information regarding quantity discounts.
+ For use by corporations and other institutions, please contact
+ us for a licensing arrangement.
+
+ Where to get new versions of PMSnap
+ ------------------------------------
+ When a new version of PMSnap comes out, the first thing we will do
+ is send it to registered users. If you give us an (Internet) e-mail
+ address when you register, we will e-mail the new PMSnap to you
+ immediately.
+ 
+ After we have finished sending copies to registered users, we will
+ post a copy to ftp.cdrom.com on the Internet. PMSnap will be put
+ in the /pub/os2/incoming directory initially; after a while, it
+ will be moved to the /pub/os2/2_x/graphics directory.
+
+ Since this version of PMSnap is shareware, you are permitted
+ (and encouraged) to pass on the file PMSnap??.ZIP. You may NOT 
+ modify this file (or its individual components) before passing it on.
+ Distributors may charge small fees for download time or distribution
+ media, but may not under any circumstances charge anything for PMSnap
+ itself.
+
+ Development Systems
+ --------------------
+ IBM PS/2 model 90       486/50MHz
+                         16 Mb RAM
+                         270 Mb hardfile
+                         Apple CD-ROM 150 (Sony-541)
+                         XGA + 14" multisync
+
+ IBM PS/2 model 95       Pentium/60MHz
+                         64 Mb RAM
+                         2400 Mb hardfile
+                         IBM CD-ROM
+                         XGA-2 + 21" multisync
+
+ OS/2 ver. 2.1 GA (UK edition)
+ 
+ Development Tools
+ ------------------
+ IBM C Set ++ for OS/2, ver 2.0
+ IBM OS/2 Developer's Toolkit 2.0 + toolkit update
+ Solution System's BRIEF 3.0 for OS/2
+ E editor
+ PM Virtual Desktop (PMVDesk)
+ 
+ Tested Environments
+ --------------------
+ OS/2 ver. 2.1 GA,
+ in XGA and XGA-2 resolutions,
+ 
+ Why we wrote PMSnap
+ --------------------
+ I needed a good screen capture program for documentation purpose.
+ Since nobody had yet implemented a good enough screen capture program
+ with *good* Palette Manager support, I decided to implement my own.
+ 
+ History
+ --------
+ PMSnap was first intended for our own use only, but since it seemed
+ to be quite useful, we decided to add features and make it public.
+ I started the task on my own, but soon realized I needed Peters
+ expertise in palette management and clipboard handling.
+ 
+ Who we are
+ -----------
+ Name:       Peter Nielsen
+ Age:        25
+ Occupation: Student (Computer Science at Abo Akademi University, Finland) 
+ (Also author of:  PMView, a multithreaded image viewer for OS/2 PM)
+
+ Name:       Carrick von Schoultz
+ Age:        26
+ Occupation: Student (Computer Science at Abo Akademi University, Finland) 
+ (Also author of:  PMVDesk, a simple virtual desktop application for OS/2)
+ 
+ How to contact us
+ ------------------
+ We would love to hear from you. If you have any comments, suggestions, 
+ or wishes for new PMSnap features, please write to us. 
+ 
+ I can be reached on the Internet at cschoult@aton.abo.fi. 
+ Alternatively, you can send me a paper letter at: 
+ 
+ Carrick von Schoultz
+ Mittarinkatu 4 bB 32
+ SF-20100 Turku
+ FINLAND
+ 
+ PMSnap.doc by Carrick von Schoultz, February 21, 1994
+
+
+
+
+
