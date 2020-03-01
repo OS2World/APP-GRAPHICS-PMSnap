@@ -1,0 +1,4 @@
+@ECHO OFF
+START "OS/2 CMD Shell - PMSnap" /WIN
+EXIT
+

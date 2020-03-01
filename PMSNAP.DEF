@@ -1,0 +1,7 @@
+NAME            PMSNAP WINDOWAPI
+DESCRIPTION     'PMSnap (c) 1994 Carrick von Schoultz, (c) 1994 Peter Nielsen.  Reverse engineering prohibited by law.'
+PROTMODE
+BASE=0X10000
+HEAPSIZE        1024
+STACKSIZE       16384
+

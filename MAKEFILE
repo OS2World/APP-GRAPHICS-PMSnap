@@ -1,0 +1,93 @@
+################################################################################
+#
+# PMSnap: MAKEFILE
+# (c) Copyright Carrick von Schoultz 1994. 
+# (c) Copyright Peter Nielsen 1994. 
+# All rights reserved.
+#
+################################################################################
+#
+# Compile options:
+# /O    optimize
+# /C    compile only
+# /Q    no copyright notice when compiling
+# /G4   optimize for 486
+# /ss   allow // comments
+# /Ge-  generate a reference to _dllentry
+# /Se   allow c/c++ tools language options
+# /Gm   use multithread libraries
+# /Wpro produce diagnostic messages about unprototyped functions
+# /kb   produce basic diagnostic messages
+# /n50  end compilation when error count reach 50
+# /Ti   generate debugger info
+# for multithread apps use
+# /Gm   use multithread libraries
+#
+################################################################################
+
+# Debug flags, uncomment when needed
+
+#CC      = icc /Ti+ /G4 /O- /Wpro /ss /c
+#LFLAGS  = /NOE /NOD /A:16 /CODEVIEW /DEBUG
+
+# Compile flags, comment when debug flags are used
+
+CC      = icc /Ti- /G4 /O+ /Q+ /Wpro /ss /c 
+LFLAGS  = /A:16 /F /PACKC /NOI /NOL /E
+
+LINK    = LINK386 $(LFLAGS)
+
+LIBS    = DOSCALLS.LIB+DDE4SBS.LIB+OS2386.LIB 
+
+# DOSCALLS.LIB includes the undocumented DOSMEMAVAIL
+# NOTE!!! You MUST NOT use DDE4NBS.LIB
+# No PM-program should use that, since it is intended for subsystem development !!!
+
+#-------------------------------------------------------------------
+
+.SUFFIXES: .res .rc .obj .c .hlp .ipf
+
+.c.obj:
+    $(CC)  $*.c
+.rc.res:
+    rc -r  $*.rc
+.ipf.hlp:
+    kill pmsnap.exe
+    ipfc   $*.ipf /W3
+
+#-------------------------------------------------------------------
+
+ALL_OBJ = PMSnap.obj Bitmap.obj Dialogs.obj
+
+ALL_IPF = PMSnap.ipf
+
+all: PMSnap.exe PMSnap.hlp
+
+#-------------------------------------------------------------------
+
+HEADERS   = PMSnap.h Bitmap.h
+RESOURCES = PMSnap.ico Options.dlg About.dlg About2.dlg Window.ptr
+
+PMSnap.obj:  PMSnap.c  $(HEADERS)
+Bitmap.obj:  Bitmap.c  $(HEADERS)
+Dialogs.obj: Dialogs.c $(HEADERS)
+PMSnap.res:  PMSnap.rc $(HEADERS) $(RESOURCES)
+
+#-------------------------------------------------------------------
+
+PMSnap.lnk: makefile
+    echo $(ALL_OBJ)           >  PMSnap.lnk
+    echo PMSnap.exe           >> PMSnap.lnk
+    echo PMSnap.map           >> PMSnap.lnk
+    echo $(LIBS)              >> PMSnap.lnk
+    echo PMSnap.def           >> PMSnap.lnk
+
+#-------------------------------------------------------------------
+
+PMSnap.exe: $(ALL_OBJ) PMSnap.def PMSnap.lnk PMSnap.res
+   kill pmsnap.exe
+   $(LINK) @PMSnap.lnk
+   rc PMSnap.res
+
+PMSnap.hlp: $(ALL_IPF)
+

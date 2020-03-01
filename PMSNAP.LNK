@@ -1,0 +1,5 @@
+PMSnap.obj Bitmap.obj Dialogs.obj           
+PMSnap.exe           
+PMSnap.map           
+DOSCALLS.LIB+DDE4SBS.LIB+OS2386.LIB              
+PMSnap.def           

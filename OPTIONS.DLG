@@ -1,0 +1,47 @@
+DLGINCLUDE 2 "PMSnap.h"
+
+DLGTEMPLATE ID_OPTIONS LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "Options", ID_OPTIONS, 0, 0, 220, 210, WS_VISIBLE | FS_NOBYTEALIGN, FCF_SYSMENU | FCF_TITLEBAR
+    BEGIN
+        PUSHBUTTON      "~OK", DID_OK, 20, 5, 40, 14
+        GROUPBOX        "General", -1, 5, 100, 210, 105
+        GROUPBOX        "Hide PMSnap during capture", -1, 10, 150, 200, 45
+        AUTORADIOBUTTON "Instantly after choosing capture method", IDC_HIDE_INST, 20, 175, 185, 10, WS_TABSTOP
+        AUTORADIOBUTTON "Only during capture", IDC_HIDE_CAPT, 20, 165, 185, 10, WS_TABSTOP
+        AUTORADIOBUTTON "PMSnap is not hidden during capture", IDC_HIDE_NO, 20, 155, 185, 10, WS_TABSTOP
+        AUTOCHECKBOX    "~Sound after capture", IDC_BEEP, 20, 135, 185, 10
+        LTEXT           "Capture delayed", -1, 20, 120, 70, 8
+        PRESPARAMS      PP_FOREGROUNDCOLOR, CLR_BLACK
+        LTEXT           "sec.", -1, 125, 120, 38, 8
+        PRESPARAMS      PP_FOREGROUNDCOLOR, CLR_BLACK
+        CONTROL         "", IDC_DELAYED, 92, 118, 28, 12, WC_SPINBUTTON, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTDEFAULT | SPBS_FASTSPIN | WS_GROUP | WS_TABSTOP | WS_VISIBLE
+        AUTOCHECKBOX    "~Allow full capture", IDC_FULLCAPTURE, 20, 105, 170, 10
+        GROUPBOX        "Area capture", -1, 5, 25, 210, 70
+        AUTOCHECKBOX    "~Magnifying pointer", IDC_MAGNIFY, 20, 70, 95, 10
+        LTEXT           "(Ctrl+M during capture)", -1, 20, 60, 99, 8
+        PRESPARAMS      PP_FOREGROUNDCOLOR, CLR_BLACK
+        LTEXT           "Magnify by:", -1, 20, 45, 65, 8
+        PRESPARAMS      PP_FOREGROUNDCOLOR, CLR_BLACK
+        CONTROL         "", IDC_MAGNIFYBY, 85, 43, 30, 12, WC_SPINBUTTON, SPBS_READONLY | SPBS_MASTER | SPBS_JUSTDEFAULT | SPBS_FASTSPIN | WS_GROUP | WS_TABSTOP | WS_VISIBLE
+        GROUPBOX        "Include rectangle", -1, 122, 30, 88, 57
+        GROUPBOX        "", -1, 155, 49, 20, 20
+        RTEXT           "Left", -1, 123, 53, 25, 8
+        PRESPARAMS      PP_FOREGROUNDCOLOR, CLR_BLACK
+        CTEXT           "Top", -1, 125, 70, 80, 8
+        PRESPARAMS      PP_FOREGROUNDCOLOR, CLR_BLACK
+        LTEXT           "Right", -1, 182, 53, 25, 8
+        PRESPARAMS      PP_FOREGROUNDCOLOR, CLR_BLACK
+        CTEXT           "Bottom", -1, 125, 35, 80, 8
+        PRESPARAMS      PP_FOREGROUNDCOLOR, CLR_BLACK
+        AUTOCHECKBOX    "", IDC_INCLUDELEFT, 150, 52, 10, 10
+        AUTOCHECKBOX    "", IDC_INCLUDETOP, 160, 60, 10, 10
+        AUTOCHECKBOX    "", IDC_INCLUDERIGHT, 170, 52, 10, 10
+        AUTOCHECKBOX    "", IDC_INCLUDEBOTTOM, 160, 44, 10, 10
+        PUSHBUTTON      "Cancel", DID_CANCEL, 75, 5, 40, 14
+        PUSHBUTTON      "Help", IDC_HELP, 130, 5, 40, 14, BS_HELP | BS_NOPOINTERFOCUS
+    END
+END
+
+
+

@@ -1,0 +1,5 @@
+#define IDD_SYSINFO 5
+#define IDC_SYSINFOLIST 500;
+
+MRESULT EXPENTRY SysInfoDlgProc (HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
+
